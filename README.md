@@ -32,7 +32,7 @@ VacheFolle ≡ Vache∃mange.Mouton ⊑ Animal
 
 ## Exercice 3
 
-> Donner les formules logiques d´ecrivant les concepts suivants:
+> Donner les formules logiques décrivant les concepts suivants:
 
 - Un homme est un humain;
 - Une femme est un humain;
@@ -91,7 +91,7 @@ La définition de `SejourActif` est différente de celle de `SejourSportif`. En 
 
 ## Exercice 5
 
-> 1. Les relations suivantes peuvent se d´eduire des relations et concepts atomiques. Donner une formule logique les décrivant:
+> 1. Les relations suivantes peuvent se déduire des relations et concepts atomiques. Donner une formule logique les décrivant:
 
 - estFrereDe(X,Y) et estSoeurDe(X,Y);
 - estPetitFilsDe(X,Y) et EstPetiteFilleDe(X,Y);
@@ -117,3 +117,38 @@ EstDescendant(e)De (X,Y) ≡ estPetitFilsDe(X,Y) ≡ estPetiteFilleDe(X,Y) ≡ e
 - estFilleDe(X,Y)⁺ ⊆ estDescendant(e)De(X,Y)
 - estPetitFilsDe(X,Y)⁺ ⊆ estDescendant(e)De(X,Y)
 - estPetiteFilleDe(X,Y)⁺ ⊆ estDescendant(e)De(X,Y)
+
+## Exercice 6
+
+> 1. Les concepts et relations suivants peuvent se déduire des relations et concepts atomiques. Donner une formule logique les décrivant;
+
+- Conducteur(X) : un conducteur est un personne qui conduit une voiture
+- Passager (X) : un passager est une personne passager d’une voiture
+- voyageAvec(X,Y) : X et Y peuvent ˆetre conducteur ou passager, mais de la mˆeme voiture
+
+```
+Conducteur ≡ Personne ∃ estConducteurDe
+Conducteur(X) ≡ Personne(X) ∩ ∃Voiture(V) : estConducteurDe(X,V)
+
+Passager ≡ Personne ∃ estPassagerDe
+Passager(X) ≡ Personne(X) ∩ ∃Voiture(V) : estPassager(X,V)
+
+VoyageAvec(X,Y) ≡
+[ Personne(X) ∃ estConducteurDe(X,V) ∩ Personne(Y) ∃ estPassagerDe(Y,V)
+∪ Personne(X)∃ estPassagerDe(X,V) ∩ Personne(Y) ∃ estPassagerDe(Y,V)
+∪ Personne(X)∃ estPassagerDe(X,V) ∩ Personne(Y) ∃ estConducteurDe(Y,V) ] 
+∩ Voiture(V)
+```
+
+> 2. Représenter graphiquement la T-Box de cette ontologie;
+
+![T-Box](img/Exercice6.png)
+
+> 3. Quelles sont les caractéristiques des relations (transitivité, symétrie, inverse, restriction de cardinalité ...) ? En deduire la logique descriptive associée;
+
+- Transitivité entre `Personne` et `Conducteur`;
+- Transitivité entre `Passager` et `Personne`;
+- Symétrie sur le lien `VoyageAvec` donc entre `Personne` et `Personne`;
+- Inverse sur le lien `estConducteurDe`;
+- Inverse sur le lien `estPassagerDe`;
+- Transitivé sur les liens entre `Thing` et `Voiture`;
