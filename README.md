@@ -37,4 +37,16 @@ VacheFolle ≡ Vache∃mange.Mouton ⊑ Animal
 - Un homme est un humain;
 - Une femme est un humain;
 - Un homme n'est pas une femme et vice-versa;
-- 
+- Une équipe est définie par un set d'au minimum 2 membres humains;
+- Une petite équipe est définie comme une équipe d'au maximum 5 membres;
+- Une équipe moderne est définie comme une petite équipe comportant au moins un leader, qui correspond à un membre, et tout les leaders sont des femmes;
+
+```
+Man ⊑ Human
+Woman ⊑ Human
+∀ ¬Man = Woman, ∀ ¬Woman = Man
+Team ≡ >2 ∀member ⊑ Human
+SmallTeam ≡ Team ⊓ (≤ 5.Member)
+Leader≡ Member
+ModernTeam ≡ SmallTeam ∃Leader : ∀Leader ⊑ Woman
+```
