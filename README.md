@@ -50,3 +50,41 @@ SmallTeam ≡ Team ⊓ (≤ 5.Member)
 Leader≡ Member
 ModernTeam ≡ SmallTeam ∃Leader : ∀Leader ⊑ Woman
 ```
+
+## Exercice 4
+
+> On considère l’ontologie suivante, extraite d’une ontologie touristique:
+
+```xml
+<owl:Class rdf:ID="Activite" /><owl:Class rdf:ID="ActiviteSportive">
+    <rdfs:subClassOf rdf:resource="#Activite" />
+</owl:Class><owl:Class rdf:ID="SejourActif">
+    <owl:equivalentClass>
+        <owl:Restriction>
+            <owl:someValuesFrom rdf:resource="#Activite" />
+            <owl:onProperty>
+                <owl:ObjectProperty rdf:ID="activites" />
+            </owl:onProperty>
+        </owl:Restriction>
+    </owl:equivalentClass>
+</owl:Class><owl:Class rdf:ID="SejourSportif">
+    <owl:equivalentClass>
+        <owl:Restriction>
+            <owl:onProperty rdf:resource="#activites" />
+            <owl:allValuesFrom rdf:resource="#ActiviteSportive" />
+        </owl:Restriction>
+    </owl:equivalentClass>
+</owl:Class>
+```
+
+> 1. Représenter cette ontologie sous forme d’expressions logiques;
+
+```
+ActiviteSportivie ⊑ Activite
+SejourActif ≡ ∃activites.Activite
+SejourSportif ≡ ∀activites.ActivitesSportive
+```
+
+> 2. Est-ce que `SejourSportif` est un sous concept de `SejourActif` ? Pourquoi ?
+
+La définition de `SejourActif` est différente de celle de `SejourSportif`. En effet, ces deux concepts ne sont pas définis l'un par rapport à l'autre et leurs relations aux autres propriétés de `activité` n'ont pas la même cardinalité. On peut donc en conclure que `SejourSportif` n'est pas un sous-concept de `SejourActif`.
