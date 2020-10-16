@@ -88,3 +88,32 @@ SejourSportif ≡ ∀activites.ActivitesSportive
 > 2. Est-ce que `SejourSportif` est un sous concept de `SejourActif` ? Pourquoi ?
 
 La définition de `SejourActif` est différente de celle de `SejourSportif`. En effet, ces deux concepts ne sont pas définis l'un par rapport à l'autre et leurs relations aux autres propriétés de `activité` n'ont pas la même cardinalité. On peut donc en conclure que `SejourSportif` n'est pas un sous-concept de `SejourActif`.
+
+## Exercice 5
+
+> 1. Les relations suivantes peuvent se d´eduire des relations et concepts atomiques. Donner une formule logique les décrivant:
+
+- estFrereDe(X,Y) et estSoeurDe(X,Y);
+- estPetitFilsDe(X,Y) et EstPetiteFilleDe(X,Y);
+- EstDescendant(e)De (X,Y);
+
+```
+estFrereDe(X,Y) = (X ⊆ Homme) ^ (Y ⊆ Humain) ^ (Parent ⊆ Humain) ^ (X estFilsDe Parent) ^ (Y estFilsDe ∪ estFilleDe Parent)
+estSoeurDe(X,Y) = (X ⊆ Femme) ^ (Y ⊆ Humain ) ^ (Parent ⊆ Humain) ^ (X estFilleDe Parent) ^ (Y estFilleDe ∪ estFilsDe Parent)
+estPetitFilsDe(X,Y) ⊆ (X ⊆ Homme) ^ (Y ⊆ Humain ) ^ (Parent ⊆ Humain) ^ (X estFilsDe(Parent)) ^ (Parent estFilsDe(Y))
+estPetiteFilleDe(X,Y) ⊆ (X ⊆ Femme) ^ (Y ⊆ Humain ) ^ (Parent ⊆ Humain) ^ (X estFilleDe(Parent)) ^ (Parent estFilsDe(Y))
+EstDescendant(e)De (X,Y) ≡ estPetitFilsDe(X,Y) ≡ estPetiteFilleDe(X,Y) ≡ estFilsDe(X,Y) ≡ estFilleDe(X,Y)
+```
+
+> 2. Représenter graphiquement la **T-Box** de cette ontologie;
+
+![T-Box](img/Exercice5_TBOX.png)
+
+> 3. Quelles sont les caractéristiques des relations (transitivité, symétrie, inverse, restriction de cardinalité ...) ? En deduire la logique descriptive associée;
+
+- estFilsDe(X,Y) ≡ ParentDe(X,Y)⁻⁻
+- estFilleDe(X,Y) ≡ ParentDe(X,Y)⁻⁻
+- estFilsDe(X,Y)⁺ ⊆ estDescendant(e)De(X,Y)
+- estFilleDe(X,Y)⁺ ⊆ estDescendant(e)De(X,Y)
+- estPetitFilsDe(X,Y)⁺ ⊆ estDescendant(e)De(X,Y)
+- estPetiteFilleDe(X,Y)⁺ ⊆ estDescendant(e)De(X,Y)
